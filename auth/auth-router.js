@@ -3,15 +3,13 @@ const bcrypt = require("bcryptjs");
 
 const Users = require("../users/users-model.js");
 
-// for endpoints beginning with /api/auth
-
-//
-// this method just gets a user into our DB, so
-// /login attempts have a username/hash to compare to.
-//
+//register
 router.post("/register", (req, res) => {
+  console.log("endpoint hit!");
   let user = req.body;
-  const hash = bcrypt.hashSync(user.password, 10); // 2 ^ n
+  console.log(user);
+  const hash = bcrypt.hashSync(user.password, 10);
+  console.log(hash);
   user.password = hash;
 
   Users.add(user)
